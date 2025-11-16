@@ -189,6 +189,7 @@ SNN.raster(model.pop, every=1,
             title="Raster plot of the balanced network")
 
 # %%
+# test
 SNN.vecplot(model.pop.CE, :v, neurons=13,
             xlabel="Time (s)", 
             ylabel="Potential (mV)", 
