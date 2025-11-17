@@ -127,7 +127,7 @@ TC3inhib_network = (
 # Function to create the network
 
 function network(config)
-    @unpack afferents_to_ThalExc, afferents_to_CortExc, afferents_to_CortPv, afferents_to_CortSst, afferents_to_CortVip, connections, Npop, spike, exc, inh = config
+    @unpack afferents_to_ThalExc, afferents_to_CortExc, afferents_to_CortPv, afferents_to_CortSst, afferents_to_CortVip, connections, Npop, spike, exc, inh_PV, inh_SST, inh_VIP = config
     @unpack synapse = config
 
     # Create neuron populations
