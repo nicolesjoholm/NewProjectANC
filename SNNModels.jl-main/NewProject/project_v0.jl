@@ -147,7 +147,7 @@ function network(config)
     @unpack layer = afferents_to_CortSst
     afferentSST = Stimulus(layer, SST, :glu, conn=afferents_to_CortSst.conn, name="bgSST")  # Excitatory input
     @unpack layer = afferents_to_CortVip
-    afferentVIP = Stimulus(layer, VIP, :glu, conn=afferents_to_CortSst.conn, name="bgSST")  # Excitatory input
+    afferentVIP = Stimulus(layer, VIP, :glu, conn=afferents_to_CortSst.conn, name="bgVIP")  # Excitatory input
 
     # Create recurrent connections
     synapses = (
