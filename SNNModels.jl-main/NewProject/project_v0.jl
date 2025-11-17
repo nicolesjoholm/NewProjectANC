@@ -87,6 +87,7 @@ TC3inhib_network = (
         # from CortPv
         CortPv_to_CortExc=(p=0.05, μ=10nS, rule=:Fixed),
         CortPv_to_CortPv=(p=0.05, μ=10nS, rule=:Fixed),
+        CortPv_to_CortSst=(p=0.05, μ=10nS, rule=:Fixed),    # PV to SST connection
         # from CortSst
         CortSst_to_CortExc=(p=0.025, μ=10nS, rule=:Fixed),
         CortSst_to_CortPv=(p=0.025, μ=10nS, rule=:Fixed),
