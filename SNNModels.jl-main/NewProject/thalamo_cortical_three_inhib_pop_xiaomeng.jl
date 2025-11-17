@@ -42,12 +42,26 @@ TC3inhib_network = (
     ),
 
     # Parameters for inhibitory neurons
-    inh=IFParameter(
-        τm=200pF / 10nS,  # Membrane time constant
-        El=-70mV,         # Leak reversal potential
-        Vt=-53.0mV,       # Spike threshold
-        Vr=-70.0f0mV,     # Reset potential
-        R=1 / 10nS,        # Membrane resistance
+    inh_PV=IFParameter(       # PV：快、阈值相对高一点
+        τm=100pF / 10nS,      # Membrane time constant
+        El=-70mV,
+        Vt=-53mV,
+        Vr=-70mV,
+        R=1 / 10nS,
+    ),
+    inh_SST=IFParameter(      # SST：慢一点
+        τm=200pF / 10nS,
+        El=-70mV,
+        Vt=-53mV,
+        Vr=-70mV,
+        R=1 / 10nS,
+    ),
+    inh_VIP=IFParameter(      # VIP：可以设成中间值
+        τm=150pF / 10nS,
+        El=-70mV,
+        Vt=-53mV,
+        Vr=-70mV,
+        R=1 / 10nS,
     ),
 
     # Spiking threshold properties - same for all neurons 
@@ -119,9 +133,9 @@ function network(config)
     # Create neuron populations
     TE = Population(exc; synapse, spike, N=Npop.ThalExc, name="ThalExc")
     CE = Population(exc; synapse, spike, N=Npop.CortExc, name="CortExc")
-    PV = Population(inh; synapse, spike, N=Npop.CortPvInh, name="CortPvInh")
-    SST = Population(inh; synapse, spike, N=Npop.CortSstInh, name="CortSstInh")
-    VIP = Population(inh; synapse, spike, N=Npop.CortVipInh, name="CortVipInh")
+    PV = Population(inh_PV; synapse, spike, N=Npop.CortPvInh, name="CortPvInh")
+    SST = Population(inh_SST; synapse, spike, N=Npop.CortSstInh, name="CortSstInh")
+    VIP = Population(inh_VIP; synapse, spike, N=Npop.CortVipInh, name="CortVipInh")
 
     # Create external Poisson input
     @unpack layer = afferents_to_ThalExc
@@ -197,6 +211,7 @@ SNN.raster(model.pop, every=1,
     title="Raster plot of the balanced network")
 
 # %%
+
 SNN.vecplot(model.pop.CE, :v, neurons=13,
     xlabel="Time (s)",
     ylabel="Potential (mV)",
@@ -204,3 +219,4 @@ SNN.vecplot(model.pop.CE, :v, neurons=13,
     c=:darkblue)
 
 # %%
+
